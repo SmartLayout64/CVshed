@@ -6,7 +6,7 @@ def getColorPercentage(mask, totalPixels):
     return (colorPixels / totalPixels) * 100
 
 def main():
-    cap = cv2.VideoCapture(1)
+    cap = cv2.VideoCapture(0)
 
     if not cap.isOpened():
         print("Camera not accessible")
@@ -60,5 +60,3 @@ def main():
 
     cap.release()
     cv2.destroyAllWindows()
-
-main()
