@@ -2,6 +2,9 @@
 
 import colorDetector
 import os
+import serial
+
+
 
 def getColorName(hidx, sidx, vidx):
     if vidx == 0:
@@ -54,7 +57,8 @@ def tickUI(percentages, bucketMeta, maxColorRows):
         else:
             lines.append("")
 
-    lines.append("")
+    lines.append(f"Temperature: {ser.readline().decode().strip()}")
+
     lines.append("  Press Ctrl+C to quit.")
 
     output = "\033[1;1H"
@@ -66,6 +70,7 @@ def tickUI(percentages, bucketMeta, maxColorRows):
 
 # --- Setup ---
 colorDetector.initialize(0)
+ser = serial.Serial("/dev/ttyACM0", 9600)
 
 hBuckets = 18
 sBuckets = 3
