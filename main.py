@@ -57,7 +57,10 @@ def tickUI(percentages, bucketMeta, maxColorRows):
         else:
             lines.append("")
 
-    lines.append(f"Temperature: {ser.readline().decode().strip()}")
+    raw = int(ser.readline().decode().strip())
+    voltage = (raw / 1023.0) * 5000
+    celsius = (voltage - 500) / 10.0
+    lines.append(f"Temperature: {celsius:.1f}C")
 
     lines.append("  Press Ctrl+C to quit.")
 
